@@ -10,10 +10,12 @@ import UIKit
 class ViewController: UIViewController {
 
     
+   
+    @IBOutlet weak var image1: UIImageView!
     
-    @IBOutlet weak var dice1: UIImageView!
     
-    @IBOutlet weak var dice2: UIImageView!
+    @IBOutlet weak var image2: UIImageView!
+    
     
     @IBOutlet weak var lblWinLose: UILabel!
     
@@ -22,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playBtn: UIButton!
     
     
-    let imageArray = ["Dice 1", "Dice 2", "Dice 3", "Dice 4", "Dice 5", "Dice 6"]
+    let imageArray = ["Dice1", "Dice2", "Dice3", "Dice4", "Dice5", "Dice6"]
     
     var rand1 = Int.random(in: 0...5)
     var rand2 = Int.random(in: 0...5)
@@ -32,19 +34,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changeImage()
-        
-        // Do any additional setup after loading the view.
+        lblWinLose.text = "Please tap Play bytton"
+        lblBalance.text = "Your balance = \(balance)$"
+
     }
     
     func changeImage(){
         rand1 = Int.random(in: 0...5)
         rand2 = Int.random(in: 0...5)
         
-        dice1.image = UIImage(named: imageArray[rand1])
-        dice2.image = UIImage(named: imageArray[rand2])
+        image1.image = UIImage(named: imageArray[rand1])
+        image2.image = UIImage(named: imageArray[rand2])
         
-        print(imageArray[rand1])
-        print(imageArray[rand2])
+//        print(imageArray[rand1])
+//        print(imageArray[rand2])
     }
     
     @IBAction func playSlot(_ sender: UIButton) {
@@ -58,11 +61,12 @@ class ViewController: UIViewController {
             balance = balance + 1
             lblWinLose.text = "You won 1$"
         }
-        else if rand1 + rand2 < 7 {
+        else {
             balance = balance - 1
             lblWinLose.text = "You lose 1$"
         }
-
+        lblBalance.text = "Your balance = \(balance)$"
+        
         if balance <= 0 {
             playBtn.isEnabled = false
             lblWinLose.text = "Please restart app"
