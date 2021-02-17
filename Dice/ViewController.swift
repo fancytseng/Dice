@@ -53,15 +53,15 @@ class ViewController: UIViewController {
     @IBAction func playSlot(_ sender: UIButton) {
         changeImage()
         
-        if rand1 + rand2 == 7 {
+        if rand1 + rand2 == 5 {
             balance = balance + 3
             lblWinLose.text = "You won 3$"
         }
-        else if rand1 + rand2 > 7 {
+        else if rand1 + rand2 > 5 {
             balance = balance + 1
             lblWinLose.text = "You won 1$"
         }
-        else {
+        else if rand1 + rand2 < 5 {
             balance = balance - 1
             lblWinLose.text = "You lose 1$"
         }
